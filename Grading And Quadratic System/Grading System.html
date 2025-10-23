@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grading System</title>
+ <link rel="stylesheet" href="Grading.css">
+</head>
+
+</head>
+<body>
+  <h1>Grading System</h1>
+  <input type="text" id="score" placeholder="Enter your score (0–100)" />
+  <button onclick="checkScore()">Check Grade</button>
+  <div id="output"></div>
+
+  <script>
+    document.getElementById("score").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault(); 
+        checkScore();
+      }
+    });
+
+    function checkScore() {
+      const input = document.getElementById("score").value;
+      const score = parseInt(input, 10);
+      const output = document.getElementById("output");
+
+      if (isNaN(score) || score < 0 || score > 100) {
+        output.textContent = "Invalid Score! Please enter a valid score between 0–100.";
+        output.style.color = "white";
+        return;
+      }
+
+      let grade = "";
+      if (score >= 86) grade = "A+";
+      else if (score >= 75) grade = "A";
+      else if (score >= 65) grade = "B+";
+      else if (score >= 60) grade = "B";
+      else if (score >= 55) grade = "C+";
+      else if (score >= 50) grade = "C";
+      else if (score >= 45) grade = "D+";
+      else grade = "D";
+
+      output.textContent = "Your Grade: " + grade;
+      output.style.color = 'white';
+    }
+  </script>
+</body>
+</html>
