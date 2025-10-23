@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grading System</title>
+<style>
+      body {
+        background: linear-gradient(to right, #00227f,#000000);
+
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    input {
+      padding: 8px;
+      margin-right: 8px;
+    }
+    button {
+      padding: 8px 12px;
+    }
+    #output {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+</style>
+</head>
+
+</head>
+<body>
+  <h1>Grading System</h1>
+  <!--input field for the grading system-->
+  <input type="text" id="score" placeholder="Enter your score (0–100)" />
+  <button onclick="checkScore()">Check Grade</button>
+  <div id="output"></div>
+
+  <script>
+    document.getElementById("score").addEventListener("keypress", function(event) {
+
+      if (event.key === "Enter") {
+        event.preventDefault(); 
+        checkScore();
+      }
+    });
+
+    function checkScore() {
+
+      const input = document.getElementById("score").value;
+      const score = parseInt(input, 10);
+      const output = document.getElementById("output");
+
+      if (isNaN(score) || score < 0 || score > 100) {
+        output.textContent = "Invalid Score! Please enter a valid score between 0–100.";
+        output.style.color = "white";
+        return;
+      }
+    //grading system
+      let grade = "";
+      if (score >= 86) grade = "A+";
+      else if (score >= 75) grade = "A";
+      else if (score >= 65) grade = "B+";
+      else if (score >= 60) grade = "B";
+      else if (score >= 55) grade = "C+";
+      else if (score >= 50) grade = "C";
+      else if (score >= 45) grade = "D+";
+      else grade = "D";
+
+      output.textContent = "Your Grade: " + grade;
+      output.style.color = 'white';
+    }
+  </script>
+  <hr>
+          <h1>Quadratic Solver</h1>
+
+        <label>ax<sup>2</sup>+bx+c</label> <br>
+        <hr>
+
+        <!-- area for inputting the a,b and c values --> 
+        <label for="a_value">a:</label>
+        <input type="text" id="a_value" >
+        <br><br>
+        <label for="b_value">b:</label>
+        <input id="b_value">
+        
+        <br><br>
+        <label for="c_value">c:</label>
+        <input id="c_value">
+
+        <br><br>
+        <p id="result1">Result1: </p>
+        
+        <p id="result2">Result2: </p>
+
+        <!-- button which calls the function that evaluates the quadratic equation-->
+        <br>
+        <button type="button" onclick="myOnClickfun()" >Evalute</button>
+  
+        <!--linked the html with the javascript-->
+        <script >
+
+function myOnClickfun(){
+
+    const num1 = document.getElementById('a_value');
+    
+    const num2 = document.getElementById('b_value');
+    
+    const num3 = document.getElementById('c_value');
+
+    const variableA = parseFloat(num1.value);
+    const variableB = parseFloat(num2.value);
+    const variableC = parseFloat(num3.value);
+
+    
+
+    let discriminant = (variableB**2) - 4 *(variableA * variableC);
+
+    if (discriminant > 0){
+
+    let output_x1 = (-variableB - Math.sqrt(discriminant)) / (2*variableA);
+    const output_x2 = (-variableB - Math.sqrt(discriminant)) / (2*variableA);
+
+    console.log(output_x1);
+
+    
+
+    document.getElementById('result1').innerText = "X_1: " + output_x1;
+    document.getElementById('result2').innerText = "X_2: "+ output_x2
+
+    } else if(discriminant < 0){
+        alert("Can not be solved");
+    }
+
+
+}
+
+
+
+
+
+        </script>
+</body>
+</html>
